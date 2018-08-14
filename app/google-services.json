@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "994646026827",
+    "firebase_url": "https://wifimapperv1.firebaseio.com",
+    "project_id": "wifimapperv1",
+    "storage_bucket": "wifimapperv1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994646026827:android:847583ba71bc6da7",
+        "android_client_info": {
+          "package_name": "WiFi.Mapper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994646026827-bhhn3r1t9geo4hm2frmlmguq7bt9ad2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPMbQA3xwyYoEo16ufVlZs96tgeH8NSzM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994646026827:android:aa81041faf19351b",
+        "android_client_info": {
+          "package_name": "com.example.jnhvic001.wifimapperv1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994646026827-uegpq3tcmr0uknhq5hhf7ircd94abb3t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jnhvic001.wifimapperv1",
+            "certificate_hash": "eaebaec2a0c891eb647ab4ca9898685201273edc"
+          }
+        },
+        {
+          "client_id": "994646026827-bhhn3r1t9geo4hm2frmlmguq7bt9ad2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPMbQA3xwyYoEo16ufVlZs96tgeH8NSzM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994646026827-bhhn3r1t9geo4hm2frmlmguq7bt9ad2q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
