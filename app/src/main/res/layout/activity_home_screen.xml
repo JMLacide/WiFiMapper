@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.jnhvic001.wifimapperv1.HomeScreen">
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIEW MAP"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="291dp" />
 </android.support.constraint.ConstraintLayout>
