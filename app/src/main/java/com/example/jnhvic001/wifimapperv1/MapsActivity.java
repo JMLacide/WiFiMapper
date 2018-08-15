@@ -1,5 +1,8 @@
 package com.example.jnhvic001.wifimapperv1;
 
+import android.content.Context;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -40,10 +43,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in UCT and ZOOM the camera
         LatLng uct = new LatLng(-33.957731,18.461170 );
-        mMap.addMarker(new MarkerOptions().position(uct).title("UCT"));
+
         float zoomLevel = 17.0f; //This goes up to 21
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uct, zoomLevel));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(uct));
+
+
+        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        int numberOfLevels = 5;
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        int level = WifiManager.calculateSignalLevel(wifiInfo.getRssi(), numberOfLevels);
+        mMap.addMarker(new MarkerOptions().position(uct).title("WiFi Signal = "+ Integer.toString(level)));
 
     }
 }
