@@ -12,6 +12,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -53,6 +55,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         int level = WifiManager.calculateSignalLevel(wifiInfo.getRssi(), numberOfLevels);
         mMap.addMarker(new MarkerOptions().position(uct).title("WiFi Signal = "+ Integer.toString(level)));
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+        myRef.setValue("User 1 WiFi Level:" + Integer.toString(level));
 
     }
 }
