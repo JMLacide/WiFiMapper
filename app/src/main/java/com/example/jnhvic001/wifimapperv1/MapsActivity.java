@@ -13,6 +13,7 @@ import android.net.wifi.WifiManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -41,6 +42,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
+        // Get the Wifi Strength received by the mobile device and display on a scale of 1 to 5
+        // 5 being the highest wifi Strength
+        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        int numberOfLevels = 5;
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        int level = WifiManager.calculateSignalLevel(wifiInfo.getRssi(), numberOfLevels);
+
+        CharSequence text = "Current Wi-Fi Level: " + level;
+        Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
+
+        // Write the wifi strength to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+        myRef.setValue("User 1 WiFi Level:" + Integer.toString(level));
+
+
+
     }
     /**
      * Manipulates the map once available.
@@ -59,18 +78,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng uct = new LatLng(-33.957731,18.461170 );
         float zoomLevel = 17.0f;
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uct, zoomLevel));
-
-        // Get the Wifi Strength received by the mobile device and display on a scale of 1 to 5
-        // 5 being the highest wifi Strength
-        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        int numberOfLevels = 5;
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        int level = WifiManager.calculateSignalLevel(wifiInfo.getRssi(), numberOfLevels);
-
-        // Write the wifi strength to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("User 1 WiFi Level:" + Integer.toString(level));
 
         BuildingMarkers buildingMarkers = new BuildingMarkers();
 
