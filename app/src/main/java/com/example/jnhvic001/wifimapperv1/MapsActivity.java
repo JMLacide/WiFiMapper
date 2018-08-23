@@ -3,6 +3,7 @@ package com.example.jnhvic001.wifimapperv1;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -23,6 +24,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -56,10 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Write the wifi strength to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("User 1 WiFi Level:" + Integer.toString(level));
-
-
-
+        myRef.setValue(Integer.toString(level));
     }
     /**
      * Manipulates the map once available.
@@ -121,5 +121,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .snippet("Wi-Fi Level: 1")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
+        // Instantiates a new Polygon object and adds points to define a rectangle
+        PolygonOptions rectOptions = new PolygonOptions()
+                .add(new LatLng(-33.957148, 18.460897),
+                        new LatLng(-33.957169, 18.461238),
+                        new LatLng(-33.956595, 18.461313),
+                        new LatLng(-33.956577, 18.460958))
+                .fillColor(Color.YELLOW)
+                .strokeColor(Color.blue(1));
+
+        // Get back the mutable Polygon
+        Polygon polygon = mMap.addPolygon(rectOptions);
     }
 }
