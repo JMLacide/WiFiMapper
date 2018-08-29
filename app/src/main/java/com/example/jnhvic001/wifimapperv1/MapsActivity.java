@@ -82,7 +82,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         BuildingMarkers buildingMarkers = new BuildingMarkers();
 
         buildingMarkers.addMarker(googleMap);
-
+/*
         Marker m1 = googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(-33.957673, 18.460735))
                 .anchor(0.5f, 0.5f)
@@ -107,30 +107,71 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
 
         Marker m4 = googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(-33.958759,18.459665))
+                .position(new LatLng(-33.956800, 18.461114))
                 .anchor(0.5f, 0.5f)
-                .title("Snape Building")
+                .title("Computer Science Building")
                 .snippet("Wi-Fi Level: 2")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
 
         Marker m5 = googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(-33.959518,18.460195))
+                .position(new LatLng(-33.956894, 18.460581))
                 .anchor(0.5f, 0.5f)
-                .title("Leslie Social Sciences Building")
-                .snippet("Wi-Fi Level: 1")
+                .title("Steve Biko Building")
+                .snippet("Wi-Fi Level: 5")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-
+*/
         // Instantiates a new Polygon object and adds points to define a rectangle
-        PolygonOptions rectOptions = new PolygonOptions()
-                .add(new LatLng(-33.957148, 18.460897),
-                        new LatLng(-33.957169, 18.461238),
-                        new LatLng(-33.956595, 18.461313),
-                        new LatLng(-33.956577, 18.460958))
-                .fillColor(Color.YELLOW)
+        PolygonOptions csc = new PolygonOptions()
+                .add(new LatLng(-33.956551, 18.460927),
+                        new LatLng(-33.956585, 18.461268),
+                        new LatLng(-33.957137, 18.461209),
+                        new LatLng(-33.957103, 18.460860))
+                .fillColor(Color.rgb(178,255,102))
+                .strokeColor(Color.blue(1));
+        //Displays polygon on mMap
+       mMap.addPolygon(csc);
+
+        PolygonOptions stevebiko = new PolygonOptions()
+                .add(new LatLng(-33.956667, 18.460479),
+                        new LatLng(-33.956692, 18.460706),
+                        new LatLng(-33.957075, 18.460658),
+                        new LatLng(-33.957065, 18.460427))
+                .fillColor(Color.rgb(255,102,102))
                 .strokeColor(Color.blue(1));
 
-        // Get back the mutable Polygon
-        Polygon polygon = mMap.addPolygon(rectOptions);
+       mMap.addPolygon(stevebiko);
+
+        PolygonOptions math = new PolygonOptions()
+                .add(new LatLng(-33.956981, 18.461489),
+                        new LatLng(-33.957016, 18.461770),
+                        new LatLng(-33.957517, 18.461685),
+                        new LatLng(-33.957481, 18.461397))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(math);
+
+        PolygonOptions ac_jordan = new PolygonOptions()
+                .add(new LatLng(-33.958053, 18.461277),
+                        new LatLng(-33.958109, 18.461556),
+                        new LatLng(-33.958593, 18.461406),
+                        new LatLng(-33.958538, 18.461135))
+                .fillColor(Color.rgb(255,178,102))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(ac_jordan);
+
+        PolygonOptions jagger_library = new PolygonOptions()
+                .add(new LatLng(-33.957922, 18.460712),
+                        new LatLng(-33.957977, 18.461027),
+                        new LatLng(-33.958195, 18.460958),
+                        new LatLng(-33.958144, 18.460641))
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(jagger_library);
+
+
     }
 }
