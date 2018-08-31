@@ -172,6 +172,97 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addPolygon(jagger_library);
 
+        PolygonOptions cissy_gool_mall = new PolygonOptions()
+                .add(new LatLng(-33.956777, 18.460736),
+                        new LatLng(-33.956790, 18.460873),
+                        new LatLng(-33.957069, 18.460849),
+                        new LatLng(-33.957056, 18.460708))
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(cissy_gool_mall);
+
+        PolygonOptions library = new PolygonOptions()
+                .add(new LatLng(-33.957106, 18.460362),
+                        new LatLng(-33.957169, 18.460863),
+                        new LatLng(-33.957381, 18.460816),
+                        new LatLng(-33.957326, 18.460331))
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(library);
+
+        PolygonOptions molly_blackburn = new PolygonOptions()
+                .add(new LatLng(-33.957188, 18.460867),
+                        new LatLng(-33.957232, 18.461190),
+                        new LatLng(-33.957455, 18.461150),
+                        new LatLng(-33.957411, 18.460815))
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(molly_blackburn);
+
+        PolygonOptions memorial_hall = new PolygonOptions()
+                .add(new LatLng(-33.957501, 18.460549),
+                        new LatLng(-33.957564, 18.460888),
+                        new LatLng(-33.957800, 18.460850),
+                        new LatLng(-33.957736, 18.460488))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(memorial_hall);
+
+        PolygonOptions botany = new PolygonOptions()
+                .add(new LatLng(-33.956129, 18.461560),
+                        new LatLng(-33.956141, 18.461836),
+                        new LatLng(-33.956796, 18.461778),
+                        new LatLng(-33.956783, 18.461521))
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(botany);
+
+        PolygonOptions zoology = new PolygonOptions()
+                .add(new LatLng(-33.955929, 18.460946),
+                        new LatLng(-33.955926, 18.461284),
+                        new LatLng(-33.956532, 18.461260),
+                        new LatLng(-33.956514, 18.460943))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(zoology);
+
+        PolygonOptions rw_james = new PolygonOptions()
+                .add(new LatLng(-33.955274, 18.461557),
+                        new LatLng(-33.955270, 18.461838),
+                        new LatLng(-33.955963, 18.461838),
+                        new LatLng(-33.955961, 18.461559))
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(rw_james);
+
+        PolygonOptions chris_hani = new PolygonOptions()
+                .add(new LatLng(-33.955666, 18.460962),
+                        new LatLng(-33.955670, 18.461297),
+                        new LatLng(-33.955877, 18.461302),
+                        new LatLng(-33.955875, 18.460951))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(chris_hani);
+
+        PolygonOptions molecularbiology = new PolygonOptions()
+                .add(new LatLng(-33.955139, 18.460789),
+                        new LatLng(-33.955132, 18.461031),
+                        new LatLng(-33.954972, 18.461025),
+                        new LatLng(-33.954973, 18.461292),
+                        new LatLng(-33.955630, 18.461302),
+                        new LatLng(-33.955637, 18.460802))
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(molecularbiology);
 
     }
 }
