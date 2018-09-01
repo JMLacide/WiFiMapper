@@ -182,7 +182,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addPolygon(cissy_gool_mall);
 
-        PolygonOptions library = new PolygonOptions()
+        PolygonOptions molly_blackburn2 = new PolygonOptions()
                 .add(new LatLng(-33.957106, 18.460362),
                         new LatLng(-33.957169, 18.460863),
                         new LatLng(-33.957381, 18.460816),
@@ -190,7 +190,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .fillColor(Color.rgb(192,192,192))
                 .strokeColor(Color.blue(1));
 
-        mMap.addPolygon(library);
+        mMap.addPolygon(molly_blackburn2);
 
         PolygonOptions molly_blackburn = new PolygonOptions()
                 .add(new LatLng(-33.957188, 18.460867),
@@ -252,6 +252,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addPolygon(chris_hani);
 
+
         PolygonOptions molecularbiology = new PolygonOptions()
                 .add(new LatLng(-33.955139, 18.460789),
                         new LatLng(-33.955132, 18.461031),
@@ -263,6 +264,183 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .strokeColor(Color.blue(1));
 
         mMap.addPolygon(molecularbiology);
+
+        PolygonOptions beatie = new PolygonOptions()
+                .add(new LatLng(-33.958714, 18.461069),
+                        new LatLng(-33.958784, 18.461343),
+                        new LatLng(-33.959334, 18.461141),
+                        new LatLng(-33.959262, 18.460865))
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(beatie);
+
+        PolygonOptions architecture_building = new PolygonOptions()
+                .add(new LatLng(-33.959437, 18.460787),
+                        new LatLng(-33.959526, 18.461058),
+                        new LatLng(-33.960131, 18.460757),
+                        new LatLng(-33.960039, 18.460486))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(architecture_building);
+
+        PolygonOptions leslie_social = new PolygonOptions()
+                .add(new LatLng(-33.959093, 18.460094),
+                        new LatLng(-33.959249, 18.460558),
+                        new LatLng(-33.959791, 18.460289),
+                        new LatLng(-33.959631, 18.459816))
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(leslie_social);
+
+        PolygonOptions geo_building = new PolygonOptions()
+                .add(new LatLng(-33.958809, 18.460349),
+                        new LatLng(-33.958897, 18.460720),
+                        new LatLng(-33.959113, 18.460638),
+                        new LatLng(-33.959012, 18.460269))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(geo_building);
+
+        PolygonOptions EM_building = new PolygonOptions()
+                .add(new LatLng(-33.958230, 18.460603),
+                        new LatLng(-33.958308, 18.460941),
+                        new LatLng(-33.958840, 18.460760),
+                        new LatLng(-33.958764, 18.460423))
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(EM_building);
+
+        PolygonOptions menzies = new PolygonOptions()
+                .add(new LatLng(-33.958404, 18.460061),
+                        new LatLng(-33.958439, 18.460229),
+                        new LatLng(-33.958953, 18.460071),
+                        new LatLng(-33.958912, 18.459883))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(menzies);
+
+        PolygonOptions snape = new PolygonOptions()
+                .add(new LatLng(-33.958233, 18.459594),
+                        new LatLng(-33.958320, 18.459919),
+                        new LatLng(-33.958992, 18.459683),
+                        new LatLng(-33.959089, 18.459423),
+                        new LatLng(-33.959089, 18.459423),
+                        new LatLng(-33.958393, 18.459676),
+                        new LatLng(-33.958360, 18.459553)
+                        )
+                .fillColor(Color.rgb(192,192,192))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(snape);
+
+        PolygonOptions leslie_commerce = new PolygonOptions()
+                .add(new LatLng(-33.958981, 18.459767),
+                        new LatLng(-33.959059, 18.459993),
+                        new LatLng(-33.959592, 18.459722),
+                        new LatLng(-33.959520, 18.459497))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(leslie_commerce);
+
+        PolygonOptions alex = new PolygonOptions()
+                .add(new LatLng(-33.959778, 18.459802),
+                        new LatLng(-33.959940, 18.460247),
+                        new LatLng(-33.960257, 18.460065),
+                        new LatLng(-33.960096, 18.459632))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(alex);
+
+
+        PolygonOptions kaplan = new PolygonOptions()
+                .add(new LatLng(-33.959811, 18.459365),
+                        new LatLng(-33.959875, 18.459553),
+                        new LatLng(-33.960068, 18.459453),
+                        new LatLng(-33.960001, 18.459269))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(kaplan);
+
+        PolygonOptions engineering = new PolygonOptions()
+                .add(new LatLng(-33.958314, 18.459190),
+                        new LatLng(-33.958367, 18.459458),
+                        new LatLng(-33.959013, 18.459254),
+                        new LatLng(-33.958948, 18.458974))
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+
+        mMap.addPolygon(engineering);
+
+        PolygonOptions pd_pahn = new PolygonOptions()
+                .add(new LatLng(-33.955429, 18.460238),
+                        new LatLng(-33.955421, 18.460731),
+                        new LatLng(-33.956447, 18.460738),
+                        new LatLng(-33.956434, 18.460004),
+                        new LatLng(-33.956079, 18.460011)
+                        )
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+        mMap.addPolygon(pd_pahn);
+
+        PolygonOptions hoeri = new PolygonOptions()
+                .add(new LatLng(-33.956490, 18.459931),
+                        new LatLng(-33.956518, 18.460327),
+                        new LatLng(-33.956829, 18.460294),
+                        new LatLng(-33.956872, 18.460168),
+                        new LatLng(-33.956844, 18.459929)
+
+                )
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+        mMap.addPolygon(hoeri);
+
+        PolygonOptions library = new PolygonOptions()
+                .add(new LatLng(-33.957375, 18.460286),
+                        new LatLng(-33.957409, 18.460528),
+                        new LatLng(-33.957867, 18.460433),
+                        new LatLng(-33.957909, 18.460682),
+                        new LatLng(-33.958138, 18.460620),
+                        new LatLng(-33.958057, 18.460148)
+
+                )
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+        mMap.addPolygon(library);
+
+        PolygonOptions egs_building = new PolygonOptions()
+                .add(new LatLng(-33.956994, 18.459729),
+                        new LatLng(-33.957052, 18.460231),
+                        new LatLng(-33.957371, 18.460193),
+                        new LatLng(-33.957323, 18.459685)
+
+                )
+                .fillColor(Color.rgb(255,255,0))
+                .strokeColor(Color.blue(1));
+        mMap.addPolygon(egs_building);
+
+        //PolygonOptions open_space1 = new PolygonOptions()
+                //.add(new LatLng(-33.954735, 18.460311),
+                        //new LatLng(-33.954982, 18.461411),
+                        //new LatLng(-33.955239, 18.462072),
+                        //new LatLng(-33.955978, 18.461995),
+                        //new LatLng(-33.955909, 18.460788)
+               // )
+                //.addHole(molecularbiology.getPoints())
+                //.fillColor(Color.rgb(255,200,100))
+                //.strokeColor(Color.blue(1));
+
+       // mMap.addPolygon(open_space1);
+
+
 
     }
 }
