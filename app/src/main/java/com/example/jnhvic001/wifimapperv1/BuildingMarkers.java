@@ -469,7 +469,314 @@ public class BuildingMarkers {
                 .fillColor(rgb(255,200,0))
                 .strokeColor(Color.blue(1));
         outer.add(outside15);
+
+        PolygonOptions outside16 = new PolygonOptions()
+                .add(new LatLng(-33.958541, 18.461106),
+                        new LatLng(-33.958615, 18.461482),
+                        new LatLng(-33.958800, 18.461425),
+                        new LatLng(-33.958708, 18.461064))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside16);
+
+        PolygonOptions outside17 = new PolygonOptions()
+                .add(new LatLng(-33.958845, 18.460758),
+                        new LatLng(-33.958899, 18.460996),
+                        new LatLng(-33.959337, 18.460825),
+                        new LatLng(-33.959275, 18.460550))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside17);
+
+        PolygonOptions outside18 = new PolygonOptions()
+                .add(new LatLng(-33.959264, 18.460860),
+                        new LatLng(-33.959346, 18.461179),
+                        new LatLng(-33.959541, 18.461114),
+                        new LatLng(-33.959428, 18.460785))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside18);
+
+        PolygonOptions outside19 = new PolygonOptions()
+                .add(new LatLng(-33.959272, 18.460554),
+                        new LatLng(-33.959336, 18.460818),
+                        new LatLng(-33.960026, 18.460461),
+                        new LatLng(-33.959922, 18.460223))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside19);
+
+        PolygonOptions outside20 = new PolygonOptions()
+                .add(new LatLng(-33.959937, 18.460250),
+                        new LatLng(-33.960151, 18.460795),
+                        new LatLng(-33.960418, 18.460430),
+                        new LatLng(-33.960260, 18.460057))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside20);
+
+        PolygonOptions outside21 = new PolygonOptions()
+                .add(new LatLng(-33.960088, 18.459581),
+                        new LatLng(-33.960394, 18.460460),
+                        new LatLng(-33.960716, 18.459936),
+                        new LatLng(-33.960415, 18.459421))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside21);
+
+        PolygonOptions outside22 = new PolygonOptions()
+                .add(new LatLng(-33.959883, 18.458979),
+                        new LatLng(-33.960394, 18.460460),
+                        new LatLng(-33.960439, 18.459440),
+                        new LatLng(-33.960105, 18.458743))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside22);
+
+        PolygonOptions outside23 = new PolygonOptions()
+                .add(new LatLng(-33.958933, 18.458848),
+                        new LatLng(-33.959053, 18.459421),
+                        new LatLng(-33.959936, 18.459123),
+                        new LatLng(-33.959329, 18.458753))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside23);
+
+        PolygonOptions outside24 = new PolygonOptions()
+                .add(new LatLng(-33.958281, 18.459039),
+                        new LatLng(-33.958312, 18.459181),
+                        new LatLng(-33.958957, 18.458966),
+                        new LatLng(-33.958959, 18.458848))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside24);
+
+        PolygonOptions outside25 = new PolygonOptions()
+                .add(new LatLng(-33.958346, 18.459466),
+                        new LatLng(-33.958391, 18.459675),
+                        new LatLng(-33.959085, 18.459420),
+                        new LatLng(-33.959013, 18.459252))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside25);
+
+        PolygonOptions outside26 = new PolygonOptions()
+                .add(new LatLng(-33.959091, 18.459421),
+                        new LatLng(-33.958979, 18.459760),
+                        new LatLng(-33.960022, 18.459249),
+                        new LatLng(-33.959890, 18.459161))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside26);
+
+        PolygonOptions outside27 = new PolygonOptions()
+                .add(new LatLng(-33.959518, 18.459496),
+                        new LatLng(-33.959825, 18.460409),
+                        new LatLng(-33.959972, 18.460337),
+                        new LatLng(-33.959625, 18.459309))
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside27);
+
+        PolygonOptions outside28 = new PolygonOptions()
+                .add(new LatLng(-33.959625, 18.459309),
+                        new LatLng(-33.959767, 18.459800),
+                        new LatLng(-33.960118, 18.459607),
+                        new LatLng(-33.960068, 18.459455),
+                        new LatLng(-33.959874, 18.459553),
+                        new LatLng(-33.959778, 18.459258)
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside28);
+
+        PolygonOptions outside29 = new PolygonOptions()
+                .add(new LatLng(-33.958949, 18.460046),
+                        new LatLng(-33.958974, 18.460145),
+                        new LatLng(-33.959630, 18.459814),
+                        new LatLng(-33.959598, 18.459722)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside29);
+
+        PolygonOptions outside30 = new PolygonOptions()
+                .add(new LatLng(-33.958974, 18.460145),
+                        new LatLng(-33.959143, 18.460749),
+                        new LatLng(-33.959283, 18.460682),
+                        new LatLng(-33.959063, 18.460057)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside30);
+
+        PolygonOptions outside31 = new PolygonOptions()
+                .add(new LatLng(-33.958878, 18.459727),
+                        new LatLng(-33.958974, 18.460145),
+                        new LatLng(-33.959063, 18.460057),
+                        new LatLng(-33.958964, 18.459698)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside31);
+
+        PolygonOptions outside32 = new PolygonOptions()
+                .add(new LatLng(-33.958030, 18.460036),
+                        new LatLng(-33.958062, 18.460151),
+                        new LatLng(-33.958912, 18.459883),
+                        new LatLng(-33.958878, 18.459727)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside32);
+
+        PolygonOptions outside33 = new PolygonOptions()
+                .add(new LatLng(-33.958061, 18.460150),
+                        new LatLng(-33.958147, 18.460632),
+                        new LatLng(-33.958818, 18.460402),
+                        new LatLng(-33.958806, 18.460348),
+                        new LatLng(-33.959011, 18.460269),
+                        new LatLng(-33.958953, 18.460070),
+                        new LatLng(-33.958440, 18.460232),
+                        new LatLng(-33.958391, 18.460012)
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside33);
+
+        PolygonOptions outside34 = new PolygonOptions()
+                .add(new LatLng(-33.958762, 18.460423),
+                        new LatLng(-33.958841, 18.460760),
+                        new LatLng(-33.958897, 18.460747),
+                        new LatLng(-33.958804, 18.460348)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside34);
+
+
+        PolygonOptions outside35 = new PolygonOptions()
+                .add(new LatLng(-33.958143, 18.460629),
+                        new LatLng(-33.958199, 18.460967),
+                        new LatLng(-33.958305, 18.460943),
+                        new LatLng(-33.958229, 18.460601)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside35);
+
+        PolygonOptions outside36 = new PolygonOptions()
+                .add(new LatLng(-33.957732, 18.460460),
+                        new LatLng(-33.957801, 18.460850),
+                        new LatLng(-33.957936, 18.460816),
+                        new LatLng(-33.957868, 18.460433)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside36);
+
+        PolygonOptions outside37 = new PolygonOptions()
+                .add(new LatLng(-33.957344, 18.460545),
+                        new LatLng(-33.957389, 18.460824),
+                        new LatLng(-33.957537, 18.460772),
+                        new LatLng(-33.957500, 18.460548),
+                        new LatLng(-33.957736, 18.460485),
+                        new LatLng(-33.957732, 18.460462)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside37);
+
+        PolygonOptions outside38 = new PolygonOptions()
+                .add(new LatLng(-33.957415, 18.460821),
+                        new LatLng(-33.957439, 18.461010),
+                        new LatLng(-33.957764, 18.460889),
+                        new LatLng(-33.957557, 18.460910),
+                        new LatLng(-33.957526, 18.460744)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside38);
+
+        PolygonOptions outside39 = new PolygonOptions()
+                .add(new LatLng(-33.956424, 18.459842),
+                        new LatLng(-33.956448, 18.460786),
+                        new LatLng(-33.956551, 18.460920),
+                        new LatLng(-33.956793, 18.460891),
+                        new LatLng(-33.956774, 18.460711),
+                        new LatLng(-33.956680, 18.460712),
+                        new LatLng(-33.956646, 18.460318),
+                        new LatLng(-33.956517, 18.460327),
+                        new LatLng(-33.956467, 18.459832)
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside39);
+
+        PolygonOptions outside40 = new PolygonOptions()
+                .add(new LatLng(-33.956467, 18.459832),
+                        new LatLng(-33.956479, 18.459924),
+                        new LatLng(-33.956842, 18.459940),
+                        new LatLng(-33.956880, 18.460284),
+                        new LatLng(-33.956646, 18.460316),
+                        new LatLng(-33.956661, 18.460472),
+                        new LatLng(-33.957065, 18.460421),
+                        new LatLng(-33.956981, 18.459630)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside40);
+
+        PolygonOptions outside41 = new PolygonOptions()
+                .add(new LatLng(-33.957087, 18.460239),
+                        new LatLng(-33.957112, 18.460392),
+                        new LatLng(-33.957314, 18.460336),
+                        new LatLng(-33.957342, 18.460546),
+                        new LatLng(-33.957407, 18.460531),
+                        new LatLng(-33.957375, 18.460285),
+                        new LatLng(-33.958056, 18.460146),
+                        new LatLng(-33.958032, 18.460044)
+
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside41);
+
+        PolygonOptions outside42 = new PolygonOptions()
+                .add(new LatLng(-33.956974, 18.459600),
+                        new LatLng(-33.956993, 18.459731),
+                        new LatLng(-33.957327, 18.459670),
+                        new LatLng(-33.957388, 18.460184),
+                        new LatLng(-33.958316, 18.459910),
+                        new LatLng(-33.958130, 18.459177)
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside42);
+
+        PolygonOptions outside43 = new PolygonOptions()
+                .add(new LatLng(-33.958126, 18.459154),
+                        new LatLng(-33.958228, 18.459587),
+                        new LatLng(-33.958386, 18.459539),
+                        new LatLng(-33.958291, 18.459103)
+                )
+                .fillColor(rgb(255,200,0))
+                .strokeColor(Color.blue(1));
+        outer.add(outside43);
+
         return outer;
+
+
     }
 
 }
