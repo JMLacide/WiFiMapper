@@ -69,10 +69,6 @@ public class Building {
         this.co_odrinates.add(new LatLng(lat,lng));
     }
 
-    //public void setbStrength(int strength) {
-        //this.bStrength = strength;
-    //}
-
     public void updateAverage(int entry){
         average.add(entry);
         int sum = 0;
