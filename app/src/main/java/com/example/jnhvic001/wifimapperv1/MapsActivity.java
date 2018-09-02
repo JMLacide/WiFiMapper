@@ -98,19 +98,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Location of Jameson Stairs, for zooming purpose.
-        LatLng uct = new LatLng(-33.957731,18.461170 );
-        float zoomLevel = 17.0f;
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uct, zoomLevel));
-
         BuildingMarkers buildingMarkers = new BuildingMarkers();
 
         //List<Building> buildings = buildingMarkers.initBuildings(); //create array of building objects
         ArrayList<PolygonOptions> buildingAreas = buildingMarkers.getPolygons(); //ArrayList of all Polygons shapes
+        ArrayList<PolygonOptions> outerAreas = buildingMarkers.getOutsideArea(buildingAreas); //ArrayList of all Polygons shapes
 
         //iterate through polygonOptions arrayList and display all polygons on the mMap object
         for(PolygonOptions p: buildingAreas){
             mMap.addPolygon(p);
+        }
+
+        for(PolygonOptions j: outerAreas) {
+            mMap.addPolygon(j);
         }
 
         mLocationRequest = new LocationRequest();
@@ -150,16 +150,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mCurrLocationMarker.remove();
                 }
 
-                //Place current location marker
-                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(latLng);
-                markerOptions.title("Current Position");
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-                mCurrLocationMarker = mMap.addMarker(markerOptions);
-
-                //move map camera
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+                // Location of Jameson Stairs, for zooming purpose.
+                LatLng uct = new LatLng(-33.957731,18.461170 );
+                float zoomLevel = 17.0f;
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uct, zoomLevel));
 
 
             }

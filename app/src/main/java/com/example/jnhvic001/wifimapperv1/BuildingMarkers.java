@@ -28,22 +28,22 @@ public class BuildingMarkers {
         csc.add(new LatLng(-33.957103, 18.460860));
         buildings.add(new Building("Computer Science Building", csc));
 
-       return buildings;
-   }
+        return buildings;
+    }
 
     //arrayList of all the polygons of all the buildings
     public ArrayList<PolygonOptions> getPolygons(/*List<Building> buildings*/){
-       ArrayList<PolygonOptions> shapes = new ArrayList<>();
-       PolygonOptions csc = new PolygonOptions()
+        ArrayList<PolygonOptions> shapes = new ArrayList<>();
+        PolygonOptions csc = new PolygonOptions()
                 .add(new LatLng(-33.956551, 18.460927),
                         new LatLng(-33.956585, 18.461268),
                         new LatLng(-33.957137, 18.461209),
                         new LatLng(-33.957103, 18.460860))
                 .fillColor(rgb(178,255,102))
                 .strokeColor(Color.blue(1));
-       shapes.add(csc);
+        shapes.add(csc);
 
-       PolygonOptions stevebiko = new PolygonOptions()
+        PolygonOptions stevebiko = new PolygonOptions()
                 .add(new LatLng(-33.956667, 18.460479),
                         new LatLng(-33.956692, 18.460706),
                         new LatLng(-33.957075, 18.460658),
@@ -321,7 +321,7 @@ public class BuildingMarkers {
                         new LatLng(-33.955640, 18.461546),
                         new LatLng(-33.955660, 18.460781),
                         new LatLng(-33.955407, 18.460482)
-                        )
+                )
                 .addHole(buildings.get(13).getPoints())
                 .fillColor(rgb(255,200,0))
                 .strokeColor(Color.blue(1));
