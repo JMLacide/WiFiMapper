@@ -85,12 +85,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //List<Building> buildings = buildingMarkers.initBuildings(); //create array of building objects
         ArrayList<PolygonOptions> buildingAreas = buildingMarkers.getPolygons(); //ArrayList of all Polygons shapes
+        ArrayList<PolygonOptions> outerAreas = buildingMarkers.getOutsideArea(buildingAreas); //ArrayList of all Polygons shapes
 
         //iterate through polygonOptions arrayList and display all polygons on the mMap object
         for(PolygonOptions p: buildingAreas){
             mMap.addPolygon(p);
         }
-
-
+        for(PolygonOptions j: outerAreas) {
+            mMap.addPolygon(j);
+        }
     }
 }
