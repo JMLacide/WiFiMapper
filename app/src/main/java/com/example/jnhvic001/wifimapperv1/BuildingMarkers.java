@@ -6,34 +6,34 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.graphics.Color.rgb;
 
 public class BuildingMarkers {
 
-    public BuildingMarkers() {}
+    private GoogleMap mMap;
+    Map<String,PolygonOptions> mapper = new HashMap<>();
 
-    //method that returns a list of upper campus buildings
-    public List<Building> initBuildings(){
-        ArrayList<Building> buildings = new ArrayList<>();
-        List<LatLng> csc = new ArrayList<>();
-        csc.add(new LatLng(-33.956551, 18.460927));
-        csc.add(new LatLng(-33.956585, 18.461268));
-        csc.add(new LatLng(-33.957137, 18.461209));
-        csc.add(new LatLng(-33.957103, 18.460860));
-        buildings.add(new Building("Computer Science Building", csc));
-
-        return buildings;
+    public BuildingMarkers(GoogleMap mMap) {
+        this.mMap = mMap;
     }
 
-    //arrayList of all the polygons of all the buildings
-    public ArrayList<PolygonOptions> getPolygons(/*List<Building> buildings*/){
-        ArrayList<PolygonOptions> shapes = new ArrayList<>();
+    public void drawPolygons() {
+
         PolygonOptions csc = new PolygonOptions()
                 .add(new LatLng(-33.956551, 18.460927),
                         new LatLng(-33.956585, 18.461268),
@@ -41,6 +41,37 @@ public class BuildingMarkers {
                         new LatLng(-33.957103, 18.460860))
                 .fillColor(rgb(178,255,102))
                 .strokeColor(Color.blue(1));
+
+        Polygon csc2 = mMap.addPolygon(csc);
+        csc2.setTag("Computer Science");
+
+        mapper.put((String) csc2.getTag(),csc);
+        addToDatabase();
+    }
+
+    public void addToDatabase() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Areas");
+
+        List<Integer> list = new ArrayList<>();
+        List<Date> list2 = new ArrayList<>();
+        list.add(3);
+        list2.add(Calendar.getInstance().getTime());
+
+        for(Map.Entry<String,PolygonOptions> entry: mapper.entrySet()) {
+            Building building = new Building(entry.getKey(),list,list2,list.size(),3);
+            String id = myRef.push().getKey();
+            myRef.child(id).setValue(building);
+        }
+    }
+
+/*
+    //arrayList of all the polygons of all the buildings
+    public ArrayList<PolygonOptions> getPolygons(*/
+/*List<Building> buildings*//*
+){
+        ArrayList<PolygonOptions> shapes = new ArrayList<>();
+
         shapes.add(csc);
 
         PolygonOptions stevebiko = new PolygonOptions()
@@ -48,7 +79,9 @@ public class BuildingMarkers {
                         new LatLng(-33.956692, 18.460706),
                         new LatLng(-33.957075, 18.460658),
                         new LatLng(-33.957065, 18.460427))
-                ./*fillColor(buildings.get(0).getColor())*/fillColor(rgb(178,255,102))
+                .*/
+/*fillColor(buildings.get(0).getColor())*//*
+fillColor(rgb(178,255,102))
                 .strokeColor(Color.blue(1));
         shapes.add(stevebiko);
 
@@ -778,5 +811,6 @@ public class BuildingMarkers {
 
 
     }
+*/
 
 }

@@ -1,10 +1,9 @@
 package com.example.jnhvic001.wifimapperv1;
 
-import android.graphics.Color;
-
-import com.google.android.gms.maps.model.LatLng;
-
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static android.graphics.Color.rgb;
@@ -12,70 +11,56 @@ import static android.graphics.Color.rgb;
 public class Building {
 
     protected String bName;
-    protected ArrayList<Integer> average; //list to store all wifi values that will be used to computer average;
-    protected List<LatLng> co_odrinates = new ArrayList<LatLng>(); //co-ordinates used in polygon
-    protected int bStrength;
-    protected int color;
+    protected List<Integer> wifiStrength; //list to store all wifi values that will be used to computer average;
+    protected List<Date> wifiTime; //co-ordinates used in polygon
+    protected int numberOfValues;
+    protected int current_average;
 
-    //Strength is initialized to zero since we have no data on it yet
-    public Building(String bName, List<LatLng> co_odrinates) {
+    public Building(String bName, List<Integer> wifiStrength, List<Date> wifiTime, int numberOfValues, int current_average) {
         this.bName = bName;
-        this.co_odrinates = co_odrinates; //co-ordinates used in polygon
-        this.bStrength = 0;
-        this.color = 1;
+        this.wifiStrength = wifiStrength;
+        this.wifiTime = wifiTime;
+        this.numberOfValues = numberOfValues;
+        this.current_average = current_average;
     }
-
-    public void setColour(int wifiStrength) {
-        switch (wifiStrength) {
-            case 1:
-                color = rgb(192, 192, 192); //grey
-                break;
-            case 2:
-                color = rgb(255, 102, 102);  //red
-                break;
-
-            case 3:
-                color = rgb(255, 178, 102);  //orange
-                break;
-            case 4:
-                color = rgb(255, 255, 0);  //yellow
-                break;
-            case 5:
-                color = rgb(178, 255, 102);  //green
-                break;
-        }
-    }
-
-    public int getColor(){ return color; }
-
 
     public String getbName() {
         return bName;
     }
 
-    //returns list of co-ordinates needed to draw polygon
-    public List<LatLng> getPolyCoordinates() { return co_odrinates;}
-
-    public int getbStrength() {
-        return bStrength;
+    public void setbName(String bName) {
+        this.bName = bName;
     }
 
-    public void setbName(String name) {
-        this.bName = name;
+    public List<Integer> getWifiStrength() {
+        return wifiStrength;
     }
 
-    //add a lat and long to a building that will be used to draw polygon
-    public void addLatLng(double lat, double lng) {
-        this.co_odrinates.add(new LatLng(lat,lng));
+    public void setWifiStrength(List<Integer> wifiStrength) {
+        this.wifiStrength = wifiStrength;
     }
 
-    public void updateAverage(int entry){
-        average.add(entry);
-        int sum = 0;
-        for(Integer a: average){
-            sum+=a;
-        }
-        this.bStrength = sum/average.size();
+    public List<Date> getWifiTime() {
+        return wifiTime;
+    }
 
+    public void setWifiTime(List<Date> wifiTime) {
+        this.wifiTime = wifiTime;
+    }
+
+    public int getNumberOfValues() {
+        return numberOfValues;
+    }
+
+    public void setNumberOfValues(int numberOfValues) {
+        this.numberOfValues = numberOfValues;
+    }
+
+    public int getCurrent_average() {
+        return current_average;
+    }
+
+    public void setCurrent_average(int current_average) {
+        this.current_average = current_average;
     }
 }

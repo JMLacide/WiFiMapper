@@ -39,7 +39,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.maps.android.PolyUtil;
+import com.google.maps
+        .android.PolyUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,20 +122,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        BuildingMarkers buildingMarkers = new BuildingMarkers();
+        BuildingMarkers buildingMarkers = new BuildingMarkers(mMap);
+        buildingMarkers.drawPolygons();
 
         //List<Building> buildings = buildingMarkers.initBuildings(); //create array of building objects
-        buildingAreas = buildingMarkers.getPolygons(); //ArrayList of all Polygons shapes
+       /* buildingAreas = buildingMarkers.getPolygons(); //ArrayList of all Polygons shapes
         ArrayList<PolygonOptions> outerAreas = buildingMarkers.getOutsideArea(buildingAreas); //ArrayList of all Polygons shapes
-
+*/
         //iterate through polygonOptions arrayList and display all polygons on the mMap object
-        for(PolygonOptions p: buildingAreas){
+/*        for(PolygonOptions p: buildingAreas){
             mMap.addPolygon(p);
         }
 
         for(PolygonOptions j: outerAreas) {
             mMap.addPolygon(j);
-        }
+        }*/
 
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(120000); // two minute interval
@@ -173,7 +175,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 //testing contains():
                 //Point2D.Double current = new Point2D.Double(location.getLatitude(), location.getLatitude()) ;
-                for(PolygonOptions p: buildingAreas){
+               /* for(PolygonOptions p: buildingAreas){
                     boolean contains = PolyUtil.containsLocation(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), p.getPoints(),true);
                     Marker melbourne;
                     if(contains==true){
@@ -182,7 +184,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                         //enter code to add p to data
                     }
-                }
+                }*/
 
 
                 // Location of Jameson Stairs, for zooming purpose.
