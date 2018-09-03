@@ -5,22 +5,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Looper;
-import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -42,17 +36,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.maps.android.PolyUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.graphics.Color.rgb;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -62,6 +53,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
     private Marker mCurrLocationMarker;
+    private ArrayList<PolygonOptions> buildingAreas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,7 +124,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         BuildingMarkers buildingMarkers = new BuildingMarkers();
 
         //List<Building> buildings = buildingMarkers.initBuildings(); //create array of building objects
-        ArrayList<PolygonOptions> buildingAreas = buildingMarkers.getPolygons(); //ArrayList of all Polygons shapes
+        buildingAreas = buildingMarkers.getPolygons(); //ArrayList of all Polygons shapes
         ArrayList<PolygonOptions> outerAreas = buildingMarkers.getOutsideArea(buildingAreas); //ArrayList of all Polygons shapes
 
         //iterate through polygonOptions arrayList and display all polygons on the mMap object
@@ -178,6 +170,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (mCurrLocationMarker != null) {
                     mCurrLocationMarker.remove();
                 }
+
+                //testing contains():
+                //Point2D.Double current = new Point2D.Double(location.getLatitude(), location.getLatitude()) ;
+                for(PolygonOptions p: buildingAreas){
+                    boolean contains = PolyUtil.containsLocation(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), p.getPoints(),true);
+                    Marker melbourne;
+                    if(contains==true){
+                        melbourne = mMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()))
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                        //enter code to add p to data
+                    }
+                }
+
 
                 // Location of Jameson Stairs, for zooming purpose.
                 LatLng uct = new LatLng(-33.957731,18.461170 );
