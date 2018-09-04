@@ -13,6 +13,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -37,13 +38,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.maps
-        .android.PolyUtil;
+import com.google.firebase.database.ValueEventListener;
+import com.google.maps.android.PolyUtil;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -55,6 +61,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Location mLastLocation;
     private Marker mCurrLocationMarker;
     private ArrayList<PolygonOptions> buildingAreas;
+    private BuildingMarkers buildingMarkers;
+    WifiManager wifiManager;
+    int numberOfLevels = 5;
+
+    private String loc = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +76,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Get the Wifi Strength received by the mobile device and display on a scale of 1 to 5
         // 5 being the highest wifi Strength
-        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        int numberOfLevels = 5;
+        wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        numberOfLevels = 5;
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         int level = WifiManager.calculateSignalLevel(wifiInfo.getRssi(), numberOfLevels);
 
@@ -74,13 +85,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
 
         // Write the wifi strength to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue(Integer.toString(level));
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("message");
+//        myRef.setValue(Integer.toString(level));
         //location stuff:
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-         //Loading Spinner for Filter options.
+        //Loading Spinner for Filter options.
         Spinner spinner = findViewById(R.id.planets_spinner);
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -122,7 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        BuildingMarkers buildingMarkers = new BuildingMarkers(mMap);
+        buildingMarkers = new BuildingMarkers(mMap);
         buildingMarkers.drawPolygons();
 
         //List<Building> buildings = buildingMarkers.initBuildings(); //create array of building objects
@@ -186,6 +197,71 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 }*/
 
+                Map<String,PolygonOptions> hashMap = buildingMarkers.getHashMap();
+
+                for (PolygonOptions p : hashMap.values()) {
+                    boolean contains = PolyUtil.containsLocation(-33.956812, 18.461070, p.getPoints(), true);
+                    if (contains) {
+
+                        for (Object o : hashMap.keySet()) {
+                            if (hashMap.get(o).equals(p)) {loc =(String) o;}
+                        }
+
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        final DatabaseReference myRef = database.getReference("Areas").child(loc).child("wifiStrength");
+                        final DatabaseReference myRefTime = database.getReference("Areas").child(loc).child("wifiTime");
+
+                        List<Integer> list = new ArrayList<>();
+                        list.add(3);
+                        List<Date> listDate = new ArrayList<>();
+                        listDate.add(Calendar.getInstance().getTime());
+                        myRef.setValue(list);
+                        myRefTime.setValue(listDate);
+
+
+                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+                                List<Integer> list2 = (List<Integer>) dataSnapshot.getValue();
+                                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                                int level = WifiManager.calculateSignalLevel(wifiInfo.getRssi(), numberOfLevels);
+
+                                list2.add(level);
+                                myRef.setValue(list2);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        myRefTime.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+                                List<Date> list2 = (List<Date>) dataSnapshot.getValue();
+
+                                list2.add(Calendar.getInstance().getTime());
+                                myRefTime.setValue(list2);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                    }
+                }
 
                 // Location of Jameson Stairs, for zooming purpose.
                 LatLng uct = new LatLng(-33.957731,18.461170 );
