@@ -37,6 +37,8 @@ import static android.graphics.Color.rgb;
 public class BuildingMarkers {
 
     protected Map<String,PolygonOptions> mapper = new HashMap<>();
+    protected Map<String,PolygonOptions> mapper2 = new HashMap<>();
+
     private List<PolygonOptions> polygonOptions = new ArrayList<>();
     private GoogleMap mMap;
     int counter = 0;
@@ -48,78 +50,139 @@ public class BuildingMarkers {
 
     public Map<String,PolygonOptions> getHashMap() { return mapper; }
 
-    public void setColour() {
-        for (final Object o : mapper.keySet()) {
-            final String tag = (String) o;
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            final DatabaseReference myRef = database.getReference("Areas").child(tag).child("current_average");
-            myRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange( DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        int value = dataSnapshot.getValue(Integer.class);
-                        myRef.setValue(value);
+    public void setColour(int position) {
+        if (position == 0) {
+            for (final Object o : mapper.keySet()) {
+                final String tag = (String) o;
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference myRef = database.getReference("Areas").child(tag).child("current_average");
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            int value = dataSnapshot.getValue(Integer.class);
+                            myRef.setValue(value);
 
-                        if (value == 0) {
-                            mapper.get(o).fillColor(rgb(100,100,100));
-                            Log.v("Async101", tag + " " +Integer.toString(counter++) + " " +Integer.toString(value));
-                            Log.i("Color",Integer.toString(mapper.get(o).getFillColor()));
-                            mMap.addPolygon(mapper.get(o));
-
-
-                        } else if (value == 1) {
-                            mapper.get(o).fillColor(GRAY);
-                            Log.v("Async101", tag + " " +Integer.toString(counter++) + " " +Integer.toString(value));
-                            mMap.addPolygon(mapper.get(o));
+                            if (value == 0) {
+                                mapper.get(o).fillColor(rgb(0, 0, 0));
+                                Log.v("Async101", tag + " " + Integer.toString(counter++) + " " + Integer.toString(value));
+                                Log.i("Color", Integer.toString(mapper.get(o).getFillColor()));
+                                mMap.addPolygon(mapper.get(o));
 
 
-                        } else if (value == 2) {
-                            mapper.get(o).fillColor(RED);
-                            Log.v("Async101", tag + " " +Integer.toString(counter++) + " " +Integer.toString(value));
-                            mMap.addPolygon(mapper.get(o));
+                            } else if (value == 1) {
+                                mapper.get(o).fillColor(GRAY);
+                                Log.v("Async101", tag + " " + Integer.toString(counter++) + " " + Integer.toString(value));
+                                mMap.addPolygon(mapper.get(o));
 
 
-                        } else if (value == 3) {
-                            mapper.get(o).fillColor(MAGENTA);
-                            Log.v("Async101", tag + " " +Integer.toString(counter++) + " " +Integer.toString(value));
-                            mMap.addPolygon(mapper.get(o));
+                            } else if (value == 2) {
+                                mapper.get(o).fillColor(RED);
+                                Log.v("Async101", tag + " " + Integer.toString(counter++) + " " + Integer.toString(value));
+                                mMap.addPolygon(mapper.get(o));
 
 
-                        } else if (value == 4) {
-                            mapper.get(o).fillColor(YELLOW);
-                            Log.v("Async101", tag + " " +Integer.toString(counter++) + " " +Integer.toString(value));
-                            mMap.addPolygon(mapper.get(o));
+                            } else if (value == 3) {
+                                mapper.get(o).fillColor(MAGENTA);
+                                Log.v("Async101", tag + " " + Integer.toString(counter++) + " " + Integer.toString(value));
+                                mMap.addPolygon(mapper.get(o));
 
 
-                        } else if (value == 5) {
-                            mapper.get(o).fillColor(GREEN);
-                            Log.v("Async101", tag + " " +Integer.toString(counter++) + " " +Integer.toString(value));
-                            mMap.addPolygon(mapper.get(o));
+                            } else if (value == 4) {
+                                mapper.get(o).fillColor(YELLOW);
+                                Log.v("Async101", tag + " " + Integer.toString(counter++) + " " + Integer.toString(value));
+                                mMap.addPolygon(mapper.get(o));
 
 
+                            } else if (value == 5) {
+                                mapper.get(o).fillColor(GREEN);
+                                Log.v("Async101", tag + " " + Integer.toString(counter++) + " " + Integer.toString(value));
+                                mMap.addPolygon(mapper.get(o));
+
+
+                            }
+                        } else {
+                            dataSnapshot.getRef().setValue(0);
                         }
+
+                        Log.v("Async102", "Went through method");
                     }
 
-                    else {
-                        dataSnapshot.getRef().setValue(0);
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
                     }
+                });
 
-                    Log.v("Async102", "Went through method");
-                }
+            }
+        } else if (position == 1 || position == 2) {
+            for (final Object o : mapper.keySet()) {
+                final String tag = (String) o;
+                counter = 0;
+                final List<Integer> list = new ArrayList<>();
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference myRef = database.getReference("Areas").child(tag).child("wifiStrength");
+                final DatabaseReference myRefTime = database.getReference("Areas").child(tag).child("wifiTime");
 
+                myRefTime.addValueEventListener(new ValueEventListener() {
 
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                            Date date = postSnapshot.getValue(Date.class);
+//                            Log.i(tag, date.toString());
+                            Long diffInDays = ( (Calendar.getInstance().getTimeInMillis() - date.getTime()) / (1000 * 60 * 60 * 24) );
+                            if (diffInDays < 7) {
+                                list.add(counter++);
+                            }
 
-                }
-            });
+                            else {counter++;}
+                        }
 
+                        findValues(tag,list);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
         }
     }
 
-    public void drawPolygons() {
+    public void findValues(String tagger, List<Integer> listCounter) {
+        for (final Object o : mapper.keySet()) {
+            final String tag = (String) o;
+            final List<Integer> list = new ArrayList<>();
+            counter = 0;
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            final DatabaseReference myRef = database.getReference("Areas").child(tag).child("wifiStrength");
+
+            if (tagger.equals(tag)) {
+
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            postSnapshot.getValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            else {break;}
+        }
+    }
+
+    public void drawPolygons(int num) {
 
 
 
@@ -852,7 +915,8 @@ public class BuildingMarkers {
         mapper.put("Outside 43",outside43);
 
         //createDatabase();
-        setColour();
+
+        setColour(num);
     }
 
     public void createDatabase() {

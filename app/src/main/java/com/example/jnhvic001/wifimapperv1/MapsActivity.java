@@ -52,7 +52,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
 
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationClient;
@@ -101,26 +101,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
     }
-    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
-        public void onItemSelected(AdapterView<?> parent, View view,
-                                   int pos, long id) {
-            // An item was selected. You can retrieve the selected item using
-            // parent.getItemAtPosition(pos)
-            //All time
-            if(pos == 0){}
-            //Last 7 Days
-            if(pos == 1){}
-            //Last 30 Days
-            if(pos == 2){}
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+        if (position == 0) {
+            buildingMarkers = new BuildingMarkers(mMap);
+            buildingMarkers.drawPolygons(position);
         }
 
-        public void onNothingSelected(AdapterView<?> parent) {
-            // Another interface callback
+        if (position == 1) {
+            buildingMarkers = new BuildingMarkers(mMap);
+            buildingMarkers.drawPolygons(position);
+        }
+
+        if (position == 2) {
+            buildingMarkers = new BuildingMarkers(mMap);
+            buildingMarkers.drawPolygons(position);
         }
     }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
     @Override
     public void onPause() {
         super.onPause();
@@ -135,7 +145,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         buildingMarkers = new BuildingMarkers(mMap);
-        buildingMarkers.drawPolygons();
+        buildingMarkers.drawPolygons(0);
 
         //List<Building> buildings = buildingMarkers.initBuildings(); //create array of building objects
        /* buildingAreas = buildingMarkers.getPolygons(); //ArrayList of all Polygons shapes

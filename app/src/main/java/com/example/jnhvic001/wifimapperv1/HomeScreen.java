@@ -58,8 +58,9 @@ public class HomeScreen extends AppCompatActivity implements AdapterView.OnItemS
 // Create an ArrayAdapter using the string array and a default spinner layout
 
         // Custom choices
-        List<CharSequence> choices = new ArrayList<CharSequence>();
+        List<CharSequence> choices = new ArrayList<>();
         choices.add("All Time");
+        choices.add("Last 24 hours");
         choices.add("Last 7 Days");
         choices.add("Last 30 Days");
 
@@ -68,27 +69,19 @@ public class HomeScreen extends AppCompatActivity implements AdapterView.OnItemS
 
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
     }
-    public void readData() {
+    public void readData(final int num) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("Areas");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String out ="";
-                TextView newtext = findViewById(R.id.text_view_id);
-                //Iterates through each Area
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
 
-                    //out = out + child.getValue().toString() + "/n";
-                    //Building building = snapshot.getValue(Building.class);
-                }
-                newtext.setText(out);
             }
 
             @Override
@@ -101,9 +94,6 @@ public class HomeScreen extends AppCompatActivity implements AdapterView.OnItemS
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        readData();
-
     }
 
 
