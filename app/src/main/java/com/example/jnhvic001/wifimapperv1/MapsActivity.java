@@ -64,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private BuildingMarkers buildingMarkers;
     WifiManager wifiManager;
     int numberOfLevels = 5;
+    int total = 0;
 
     private String loc = "";
     @Override
@@ -91,7 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //location stuff:
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        //Loading Spinner for Filter options.
+        //Loading Spinner for Filter options./
         Spinner spinner = findViewById(R.id.planets_spinner);
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -184,40 +185,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mCurrLocationMarker.remove();
                 }
 
-                //testing contains():
-                //Point2D.Double current = new Point2D.Double(location.getLatitude(), location.getLatitude()) ;
-               /* for(PolygonOptions p: buildingAreas){
-                    boolean contains = PolyUtil.containsLocation(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), p.getPoints(),true);
-                    Marker melbourne;
-                    if(contains==true){
-                        melbourne = mMap.addMarker(new MarkerOptions()
-                                .position(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()))
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                        //enter code to add p to data
-                    }
-                }*/
-
                 Map<String,PolygonOptions> hashMap = buildingMarkers.getHashMap();
 
                 for (PolygonOptions p : hashMap.values()) {
-                    boolean contains = PolyUtil.containsLocation(-33.956812, 18.461070, p.getPoints(), true);
+
+                    boolean contains = PolyUtil.containsLocation(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), p.getPoints(), true);
                     if (contains) {
 
                         for (Object o : hashMap.keySet()) {
                             if (hashMap.get(o).equals(p)) {loc =(String) o;}
                         }
 
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        final FirebaseDatabase database = FirebaseDatabase.getInstance();
                         final DatabaseReference myRef = database.getReference("Areas").child(loc).child("wifiStrength");
                         final DatabaseReference myRefTime = database.getReference("Areas").child(loc).child("wifiTime");
-
-                        List<Integer> list = new ArrayList<>();
-                        list.add(3);
-                        List<Date> listDate = new ArrayList<>();
-                        listDate.add(Calendar.getInstance().getTime());
-                        myRef.setValue(list);
-                        myRefTime.setValue(listDate);
-
 
                         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -225,12 +206,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-                                List<Integer> list2 = (List<Integer>) dataSnapshot.getValue();
+                                List<Long> list2 = (List<Long>) dataSnapshot.getValue();
                                 WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                                 int level = WifiManager.calculateSignalLevel(wifiInfo.getRssi(), numberOfLevels);
 
-                                list2.add(level);
+                                list2.add((long)level);
                                 myRef.setValue(list2);
+
+                                database.getReference("Areas").child(loc).child("numberOfValues").setValue(list2.size());
+
+                                database.getReference("Areas").child(loc).child("current_average").setValue(Math.round(((float)ListUtil.sum(list2))/(float)list2.size()));
 
                             }
 

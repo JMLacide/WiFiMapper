@@ -14,9 +14,9 @@ public class Building {
     protected List<Integer> wifiStrength; //list to store all wifi values that will be used to computer average;
     protected List<Date> wifiTime; //co-ordinates used in polygon
     protected int numberOfValues;
-    protected int current_average;
+    protected float current_average;
 
-    public Building(String bName, List<Integer> wifiStrength, List<Date> wifiTime, int numberOfValues, int current_average) {
+    public Building(String bName, List<Integer> wifiStrength, List<Date> wifiTime, int numberOfValues, float current_average) {
         this.bName = bName;
         this.wifiStrength = wifiStrength;
         this.wifiTime = wifiTime;
@@ -56,11 +56,11 @@ public class Building {
         this.numberOfValues = numberOfValues;
     }
 
-    public int getCurrent_average() {
+    public float getCurrent_average() {
         return current_average;
     }
 
-    public void setCurrent_average(int current_average) {
+    public void setCurrent_average(float current_average) {
         this.current_average = current_average;
     }
 }
